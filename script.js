@@ -2,7 +2,7 @@ var date = "Today's Date is: " + moment().format("MMMM Do YYYY");
 $("#currentDay").html(date);
 
 
-$(document).ready(function bird() {
+$(document).ready(function () {
     $(".saveBtn").on("click", function () {
         var text = $(this).siblings(".description").val();
         var time = $(this).parent().attr("id");
