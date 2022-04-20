@@ -9,26 +9,31 @@ $(document).ready(function () {
         localStorage.setItem(time, text);
     })
    
-
-   
+function timeUpdate(){
     var currentTime= moment().hour();
 
-    var timeBlockEl = $('.time-block')
+    $('.time-block').each(function (){
+        var timeBlockEl= parseInt($(this).attr('id').slice(-2));
+        if (timeBlockEl < currentTime){
+            $(this).addClass('past');
+            
+        } else if ( timeBlockEl === currentTime){
+            $(this).removeClass('past');
+            $(this).addClass('present');
 
-    for (var i = 0; i< timeBlockEl.length; i++) {
-        
-        if (timeBlockEl[i].id.slice(-2) < currentTime){
-            timeBlockEl.addClass('past')
-        } else if (timeBlockEl[i].id.slice(-2) === currentTime){
-            timeBlockEl.addClass('present')
         }
          else {
-             timeBlockEl.addClass('future')
-         }
-    }
+            $(this).removeClass('past');
+            $(this).removeClass('present');
+            $(this).addClass('future');
 
-
+        }
+        });
+      }
     
+    timeUpdate();
+    
+
     $("#hour-09 .description").val(localStorage.getItem("hour-09"));
     $("#hour-10 .description").val(localStorage.getItem("hour-10"));
     $("#hour-11 .description").val(localStorage.getItem("hour-11"));
